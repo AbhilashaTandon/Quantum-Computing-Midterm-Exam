@@ -64,32 +64,6 @@ let start_gl = (canvas, meshData, vertexSize, vertexShader, fragmentShader) => {
   return gl;
 };
 
-// HERE WE ARE SETTING UP HOW THE CANVAS RESPONDS TO MOUSE EVENTS.
-
-let r = canvas1.getBoundingClientRect(),
-  cursor = [0, 0, 0];
-var complex_number_mouse_loc;
-let setCursor = (e, z) => {
-  cursor = [
-    ((e.clientX - r.left) / canvas1.width) * 2 - 1,
-    1 - ((e.clientY - r.top) / canvas1.height) * 2,
-    z !== undefined ? z : cursor[2],
-  ];
-  complex_number_mouse_loc =
-    "mouse location: " +
-    (cursor[0] * 2 + 0.5).toFixed(3) +
-    " + " +
-    (cursor[1] + 0.025).toFixed(3) +
-    "i"; //add 0.025 to match with center of cursor
-};
-canvas1.onmousedown = (e) => setCursor(e, 1);
-canvas1.onmousemove = (e) => setCursor(e);
-canvas1.onmouseup = (e) => setCursor(e, 0);
-
-window.addEventListener("mousemove", () => {
-  document.getElementById("mouse_loc").innerHTML = complex_number_mouse_loc;
-});
-
 // ALL OF THE 3D MESH SHAPES THAT WE ARE RENDERING (FOR NOW IT'S JUST ONE SHAPE)
 
 let meshData = [

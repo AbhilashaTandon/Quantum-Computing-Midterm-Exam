@@ -13,8 +13,18 @@ let fragmentShader = `
 precision mediump float;
 
 uniform float uTime;
-uniform vec3 uCursor;
 varying vec3 vPos;
+
+
+// uniform vec3 uOldTopColor;
+// uniform vec3 uOldRightColor;
+// uniform vec3 uOldBottomColor;
+// uniform vec3 uOldLeftColor;
+
+uniform vec3 uTopColor;
+uniform vec3 uRightColor;
+uniform vec3 uBottomColor;
+uniform vec3 uLeftColor;
 
 vec3 rgb2hsv(vec3 c)
 {
@@ -40,37 +50,35 @@ float gain( float x, float k )
     return (x<0.5)?a:1.0-a;
 }
 
-
 void main(void) {
-float x = sin(uTime) * .5 + .5;
+    float animation_time = 1.;
     vec3 color = vec3(0.88); //background color
 
     float magnitude = sqrt(vPos.x * vPos.x + vPos.y * vPos.y);
     float manhattan = abs(vPos.x) + abs(vPos.y); //l1 distance
 
+    // vec3 top_color = mix(uOldTopColor, uTopColor, min(uDeltaT/animation_time, 1.));
+    // vec3 right_color = mix(uOldRightColor, uRightColor, min(uDeltaT/animation_time, 1.));
+    // vec3 bottom_color = mix(uOldBottomColor, uBottomColor, min(uDeltaT/animation_time, 1.));
+    // vec3 left_color = mix(uOldLeftColor, uLeftColor, min(uDeltaT/animation_time, 1.));
+
+    float amp = 1.1;
+
     if(magnitude < 1.){
-          color = vec3(.0);
-          color += vec3(1., 0., 1.) * clamp(vPos.y, 0., 1.);
-          color += vec3(0., 1., 0.) * -clamp(vPos.y, -1., 0.);
-          color += vec3(1., 1., 0.) * clamp(vPos.x, 0., 1.);
-          color += vec3(0., 0., .9) * -clamp(vPos.x, -1., 0.);
+          color = vec3(.5, .5, .5);
+          color = mix(color, uTopColor, max(vPos.y * amp, 0.));
+          color = mix(color, uBottomColor, max(-vPos.y * amp, 0.));
+          color = mix(color, uRightColor, max(vPos.x * amp, 0.));
+          color = mix(color, uLeftColor, max(-vPos.x * amp, 0.));
 
           vec3 hsv = rgb2hsv(color);
-          hsv.y += .2 * magnitude;
-          hsv.z /= manhattan;
+        //   hsv.y += .3 * magnitude;
+        //   hsv.z /= manhattan;
 
-          
-          hsv.y *= sqrt(magnitude);
-          
           color = hsv2rgb(hsv);
 
-          color = mix(color, vec3(x * 1.5), 1. - pow(magnitude, 1.5 - x * 1.2));
-
-
-          // color +=  * vec3(.5);
+        //   color = mix(color, vec3(1.), 1. - magnitude);
     }
-
-
 
     gl_FragColor = vec4(sqrt(color), 1.);
 }`;
