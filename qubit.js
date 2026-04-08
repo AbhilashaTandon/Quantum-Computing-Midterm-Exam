@@ -4,7 +4,7 @@ const base_colors = [
   [1, 0, 1],
   [0, 1, 0.2],
   [0.9, 0.9, 0],
-  [0.41, 0.41, 1],
+  [0.28, 0.28, 1],
   [1, 1, 1],
   [0, 0, 0],
 ];
@@ -33,6 +33,11 @@ function sync() {
     qubit_point_names[qubit_state[3]];
 
   // last_update = current_time;
+}
+
+function reset() {
+  qubit_state = [0, 1, 2, 3, 4, 5];
+  sync();
 }
 
 function x_90() {
@@ -71,5 +76,89 @@ function x_270() {
     qubit_state[1],
   ];
 
+  sync();
+}
+
+function y_90() {
+  qubit_state = [
+    qubit_state[3],
+    qubit_state[2],
+    qubit_state[0],
+    qubit_state[1],
+    qubit_state[4],
+    qubit_state[5],
+  ];
+  sync();
+}
+
+function y_180() {
+  qubit_state = [
+    qubit_state[1],
+    qubit_state[0],
+    qubit_state[3],
+    qubit_state[2],
+    qubit_state[4],
+    qubit_state[5],
+  ];
+  sync();
+}
+
+function y_270() {
+  qubit_state = [
+    qubit_state[2],
+    qubit_state[3],
+    qubit_state[1],
+    qubit_state[0],
+    qubit_state[4],
+    qubit_state[5],
+  ];
+  sync();
+}
+
+function z_90() {
+  qubit_state = [
+    qubit_state[0],
+    qubit_state[1],
+    qubit_state[5],
+    qubit_state[4],
+    qubit_state[2],
+    qubit_state[3],
+  ];
+  sync();
+}
+
+function z_180() {
+  qubit_state = [
+    qubit_state[0],
+    qubit_state[1],
+    qubit_state[3],
+    qubit_state[2],
+    qubit_state[5],
+    qubit_state[4],
+  ];
+  sync();
+}
+
+function z_270() {
+  qubit_state = [
+    qubit_state[0],
+    qubit_state[1],
+    qubit_state[4],
+    qubit_state[5],
+    qubit_state[3],
+    qubit_state[2],
+  ];
+  sync();
+}
+
+function hadamard() {
+  qubit_state = [
+    qubit_state[2],
+    qubit_state[3],
+    qubit_state[0],
+    qubit_state[1],
+    qubit_state[5],
+    qubit_state[4],
+  ];
   sync();
 }

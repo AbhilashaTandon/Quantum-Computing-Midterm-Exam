@@ -64,20 +64,20 @@ void main(void) {
 
     float amp = 1.1;
 
-    if(magnitude < 1.){
+    if(manhattan < 1.){
           color = vec3(.5, .5, .5);
           color = mix(color, uTopColor, max(vPos.y * amp, 0.));
           color = mix(color, uBottomColor, max(-vPos.y * amp, 0.));
           color = mix(color, uRightColor, max(vPos.x * amp, 0.));
           color = mix(color, uLeftColor, max(-vPos.x * amp, 0.));
 
-          vec3 hsv = rgb2hsv(color);
+         // vec3 hsv = rgb2hsv(color);
         //   hsv.y += .3 * magnitude;
         //   hsv.z /= manhattan;
 
-          color = hsv2rgb(hsv);
+          // color = hsv2rgb(hsv);
 
-        //   color = mix(color, vec3(1.), 1. - magnitude);
+        // color = mix(color, vec3(1.), 1. - magnitude);
     }
 
     gl_FragColor = vec4(sqrt(color), 1.);
