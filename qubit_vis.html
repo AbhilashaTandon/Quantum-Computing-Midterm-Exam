@@ -21,49 +21,41 @@
         width: 10rem;
       }
     </style>
+    <link href="style.css" rel="stylesheet" />
     <script src="math.js" type="text/javascript"></script>
-       <script src="init_gl.js" defer></script>
-       <script src="qubit.js" defer></script>
-       <script src="render_loop.js" defer></script>
-      <script src="shader.js" defer></script>
+    <script src="qubit.js" defer></script>
   </head>
   <body>
-    <div style="display: flex; flex-direction: row; justify-content: space-around;">
-      <center id="container" style="position: relative">
+    <div style="display: flex; flex-direction: row; justify-content: space-around; position: relative; margin: 30px;">
         <div>
           <h1
-            id="top-label"
-            style="position: absolute; left: 0; top: 0px; width: 100%"
-          ></h1>
+            id="top-left-label"
+            style="position: absolute; left: 10px; top: 0px; width: 100%"
+          >|0></h1>
           <h1
-            id="bottom-label"
-            style="position: absolute; left: 0; top: 600px; width: 100%"
-          ></h1>
+            id="bottom-left-label"
+            style="position: absolute; left: 10px; top: 595px; width: 100%"
+          >|-></h1>
           <h1
-            id="left-label"
+            id="top-right-label"
             style="
               position: absolute;
-              left: calc(-300px - 1rem);
-              top: 300px;
+              left: 600px;
+              top: 0px;
               width: 100%;
             "
-          ></h1>
+          >|+></h1>
           <h1
-            id="right-label"
+            id="bottom-right-label"
             style="
               position: absolute;
-              left: calc(300px + 0.5rem);
-              top: 300px;
+              left: 600px;
+              top: 595px;
               width: 100%;
             "
-          ></h1>
+          >|1></h1>
         </div>
-        <canvas
-          height="512"
-          width="512"
-          id="canvas1"
-          style="background-color: var(--background); padding-top: 5rem"
-        ></canvas>
+        <div class="image_container"><img class="image" src="image.jpg" height="500" width="500" style="position: absolute; left: 85px; top: 85px;"></img></div>
       </center>
       <div
         style="
@@ -81,18 +73,12 @@
         <button type="button"><h2>I</h2></button>
         <button type="button" onclick="hadamard()"><h2>H</h2></button>
         <button type="button" onclick="reset()"><h2>Reset</h2></button>
-        <button type="button" onclick="x_90()"><h2>X +90°</h2></button>
-        <button type="button" onclick="x_180()"><h2>X +180°</h2></button>
-        <button type="button" onclick="x_270()"><h2>X -90°</h2></button>
-        <button type="button" onclick="y_90()"><h2>Y +90°</h2></button>
-        <button type="button" onclick="y_180()"><h2>Y +180°</h2></button>
-        <button type="button" onclick="y_270()"><h2>Y -90°</h2></button>
-        <button type="button" onclick="z_90()"><h2>Z +90°</h2></button>
-        <button type="button" onclick="z_180()"><h2>Z +180°</h2></button>
-        <button type="button" onclick="z_270()"><h2>Z -90°</h2></button>
+        <button type="button" onclick="x_180()"><h2>X</h2></button>
+        <button type="button" onclick="y_180()"><h2>Y</h2></button>
+        <button type="button" onclick="z_180()"><h2>Z</h2></button>
         <button type="button"><h2>0 CNOT *</h2></button>
         <button type="button" onclick="x_180()"><h2>1 CNOT *</h2></button>
-      </>
+      </I>
     </div>
   </body>
 
