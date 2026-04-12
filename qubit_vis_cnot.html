@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Assignment 2</title>
+        <meta charset="utf-8" />
+        <style>
+            :root {
+                --text: #171618;
+                --background: #f0eff0;
+                --primary: #b63ddf;
+                --secondary: #e3e2e4;
+                --accent: #7f7981;
+                font-family: "Ubuntu Mono", monospace;
+                background-color: var(--background);
+            }
+            p {
+                text-align: justify;
+            }
+            button {
+                width: 10rem;
+            }
+        </style>
+        <link href="style.css" rel="stylesheet" />
+        <script src="math.js" type="text/javascript"></script>
+        <script src="qubit_cnot.js" defer></script>
+    </head>
+    <body>
+        <div
+            style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                position: relative;
+                width: 100vw;
+            "
+        >
+            <div id="control" style="display: flex; flex-direction: column">
+                <div style="position: relative; height: 700px; width: 700px">
+                    <img
+                        src="image.jpg"
+                        width="550"
+                        height="550"
+                        class="control_image"
+                        style="padding: 3.5rem"
+                    />
+                    <div id="control_labels">
+                        <h1
+                            id="control-top-left-label"
+                            style="
+                                position: absolute;
+                                left: 10px;
+                                top: 0px;
+                                width: 10rem;
+                            "
+                        >
+                            |0⟩
+                        </h1>
+                        <h1
+                            id="control-bottom-left-label"
+                            style="
+                                position: absolute;
+                                left: 10px;
+                                top: 595px;
+                                width: 10rem;
+                            "
+                        >
+                            |-⟩
+                        </h1>
+                        <h1
+                            id="control-top-right-label"
+                            style="
+                                position: absolute;
+
+                                left: 600px;
+                                top: 0px;
+                                width: 10rem;
+                            "
+                        >
+                            |+⟩
+                        </h1>
+                        <h1
+                            id="control-bottom-right-label"
+                            style="
+                                position: absolute;
+                                left: 600px;
+                                top: 595px;
+                                width: 10rem;
+                            "
+                        >
+                            |1⟩
+                        </h1>
+                    </div>
+                </div>
+                <div id="buttons" style="position: absolute; top: 700px">
+                    <button type="button" onclick="control_0()">
+                        <h2>|0></h2>
+                    </button>
+
+                    <button type="button" onclick="control_plus()">
+                        <h2>|+></h2>
+                    </button>
+
+                    <button type="button" onclick="control_1()">
+                        <h2>|1></h2>
+                    </button>
+
+                    <button type="button" onclick="control_minus()">
+                        <h2>|-></h2>
+                    </button>
+                </div>
+            </div>
+            <div id="target" style="display: flex; flex-direction: column">
+                <div style="position: relative; height: 700px; width: 700px">
+                    <img
+                        src="image.jpg"
+                        width="550"
+                        height="550"
+                        class="target_image"
+                        style="padding: 3.5rem"
+                    />
+                    <div id="target_labels">
+                        <h1
+                            id="target-top-left-label"
+                            style="
+                                position: absolute;
+                                left: 10px;
+                                top: 0px;
+                                width: 10rem;
+                            "
+                        >
+                            |0⟩
+                        </h1>
+                        <h1
+                            id="target-bottom-left-label"
+                            style="
+                                position: absolute;
+                                left: 10px;
+                                top: 595px;
+                                width: 10rem;
+                            "
+                        >
+                            |-⟩
+                        </h1>
+                        <h1
+                            id="target-top-right-label"
+                            style="
+                                position: absolute;
+
+                                left: 600px;
+                                top: 0px;
+                                width: 10rem;
+                            "
+                        >
+                            |+⟩
+                        </h1>
+                        <h1
+                            id="target-bottom-right-label"
+                            style="
+                                position: absolute;
+                                left: 600px;
+                                top: 595px;
+                                width: 10rem;
+                            "
+                        >
+                            |1⟩
+                        </h1>
+                    </div>
+                </div>
+                <div id="buttons" style="position: absolute; top: 700px">
+                    <button type="button" onclick="target_0()">
+                        <h2>|0></h2>
+                    </button>
+
+                    <button type="button" onclick="target_plus()">
+                        <h2>|+></h2>
+                    </button>
+
+                    <button type="button" onclick="target_1()">
+                        <h2>|1></h2>
+                    </button>
+
+                    <button type="button" onclick="target_minus()">
+                        <h2>|-></h2>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button
+            style="position: absolute; top: 300px; left: 45vw"
+            onclick="cnot()"
+        >
+            <h1>CNOT</h1>
+        </button>
+    </body>
+</html>
